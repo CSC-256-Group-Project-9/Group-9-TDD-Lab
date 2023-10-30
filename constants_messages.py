@@ -6,6 +6,8 @@ MAX_PERSON_NAME_LENGTH: int = 40
 PHONE_NUMBER_LENGTH: int = 13
 MAX_ADDRESS_LENGTH: int = 100
 MAX_EMAIL_LENGTH: int = 100
+
+
 # This class respects the SRP principle by centralizing error messages
 
 
@@ -35,3 +37,30 @@ class PersonMessages:
     INVALID_EMAIL: str = "ERROR: Email must be a valid email address format."
     EMPTY_EMAIL: str = "ERROR: Email cannot be empty or contain just whitespace."
 
+
+class ContactBookMessages:
+    """
+    This class provides centralized messages related to contact book
+
+    Static methods provide messages that need to incorporate dynamic values
+    """
+    INVALID_ADD: str = "ERROR: Contact must be valid."
+    DUPLICATE_CONTACT: str = "ERROR: Contact already in Contact Book."
+
+
+class UIMessages:
+    """
+    This class provides centralized messages related to contact book
+
+    Static methods provide messages that need to incorporate dynamic values
+    """
+
+    # Successful add/remove
+    SUCCESSFUL_ADD: str = "Contact added successfully."
+    SUCCESSFUL_REMOVE: str = "Contact removed successfully."
+
+    # Empty Contact Book
+    EMPTY_CONTACT_BOOK: str = "Contact Book is empty."
+
+    # Invalid Menu option
+    INVALID_MENU_OPTION: str = "Invalid option selected. Please choose a valid menu option."
