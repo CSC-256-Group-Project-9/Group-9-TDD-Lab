@@ -4,6 +4,7 @@
 
 import unittest
 from contactBook import ContactBook
+from constants_messages import ContactBookMessages
 
 
 class TestContactBook(unittest.TestCase):
@@ -12,20 +13,42 @@ class TestContactBook(unittest.TestCase):
         """
         Test the initialization of a ContactBook instance.
         """
+        # Create contact book and assign to contacts variable
+        contacts = ContactBook()
+
+        # Using assert, verify contacts is an instance of ContactBook class
+        assert isinstance(contacts, ContactBook)
 
     def test_display(self):
         """
         Test the string representation of Contact list.
         """
 
-    def test_add_contact(self):
+    def test_add_valid_contact(self):
         """
-        Test to check if contact is added correctly to the ContactBook
+        Test to check if a valid contact is added correctly to the ContactBook
+        """
+
+    def test_add_invalid_contact(self):
+        """
+        Test to check if an invalid contact is not added to the ContactBook
+        """
+
+    def test_duplicate_contact(self):
+        """
+        Test to check if a contact with the same name
+        is not added to the ContactBook
         """
 
     def test_find_contact(self):
         """
         Test to check if the correct contact is returned when finding contact
+        """
+
+    def test_find_nonexistent_contact(self):
+        """
+        Test to check if the None is returned when
+        searching for a non-existing contact
         """
 
     def test_remove_contact(self):
