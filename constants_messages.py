@@ -36,6 +36,11 @@ class PersonMessages:
     # Error Message / Email
     INVALID_EMAIL: str = "ERROR: Email must be a valid email address format."
     EMPTY_EMAIL: str = "ERROR: Email cannot be empty or contain just whitespace."
+    EMAIL_TOO_LONG: str = f"ERROR: Email cannot be more than {MAX_EMAIL_LENGTH} characters."
+
+    # Positive/Informative Messages
+    PERSON_ADDED_SUCCESS: str = "Person added successfully."
+    INPUT_VALUE: str = "Please enter again or press Enter to cancel."
 
 
 class ContactBookMessages:
