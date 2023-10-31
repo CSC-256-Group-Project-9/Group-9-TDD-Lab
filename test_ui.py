@@ -4,6 +4,7 @@
 
 import unittest
 from ui import CLI
+from constants_messages import UIMessages
 
 
 class TestUI(unittest.TestCase):
@@ -12,12 +13,15 @@ class TestUI(unittest.TestCase):
         """
         Initialization of test cases
         """
-        self.ui = CLI()
+        self.cli = CLI()
 
     def test_CLI_initialization(self):
         """
         Test the initialization of a CLI instance.
         """
+        # Using assert, verify contacts is an instance of CLI class
+        self.assertIsInstance(self.cli, CLI,
+                              'CLI is not initialized properly.')
 
     def test_display_menu(self):
         """
@@ -64,6 +68,9 @@ class TestUI(unittest.TestCase):
         """
         Test to verify the correct message is displayed when contact book is empty
         """
+        display_str = self.cli.display_list()
+        self.assertEqual(display_str, UIMessages.EMPTY_CONTACT_BOOK,
+                         f'Expected {UIMessages.EMPTY_CONTACT_BOOK} but got {display_str}')
 
     def test_list_contacts(self):
         """
