@@ -29,7 +29,7 @@ class TestPerson(unittest.TestCase):
         Test the string representation of a Person
         """
         self.message = "Test Person's address: 123 Somewhere Drive Anytown, USA, phone number: " \
-                       "1234567890, email: somewhere@someplace.com"
+                       "(123)456-7890, email: somewhere@someplace.com"
         self.assertEqual(self.message, str(self.personObject), msg=None)
 
     def test_person_name_setter(self) -> None:
