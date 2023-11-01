@@ -22,7 +22,7 @@ class TestPerson(unittest.TestCase):
         # error message in case if test case got failed
         self.message = "given object is not instance of Person"
         # assertIsInstance() to check if objects is instance of class
-        self.assertIsInstance(personObject, Person, message)
+        self.assertIsInstance(self.personObject, Person, self.message)
 
     def test_person_display(self) -> None:
         """
@@ -50,7 +50,7 @@ class TestPerson(unittest.TestCase):
         self.personObject.address = "321 Updated St. Somewhere Else, USA"
 
         # verify the name was changed correctly
-        self.assertEqual(personObject.address, "321 Updated St. Somewhere Else, USA", 'address not changed correctly')
+        self.assertEqual(self.personObject.address, "321 Updated St. Somewhere Else, USA", 'address not changed correctly')
 
     def test_person_phone_number_setter(self) -> None:
         """
