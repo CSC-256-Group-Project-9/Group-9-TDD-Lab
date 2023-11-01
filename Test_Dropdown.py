@@ -17,7 +17,7 @@ class SampleWebAppTests(unittest.TestCase):
         """
         self.driver = webdriver.Chrome()
         # webapp to be tested
-        self.url = 'https://group-9-unofficial.vercel.app/testing'
+        self.url = 'https://group-9-official.vercel.app/testing'
 
     def test_dropdown_selector(self):
         """
