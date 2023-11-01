@@ -19,7 +19,7 @@ class TestPerson(unittest.TestCase):
         """
         Test the initialization of a Person instance.
         """
-        # error message in case if test case got failed
+        # error message in case if test case failed
         self.message = "given object is not instance of Person"
         # assertIsInstance() to check if objects is instance of class
         self.assertIsInstance(self.personObject, Person, self.message)
@@ -28,8 +28,8 @@ class TestPerson(unittest.TestCase):
         """
         Test the string representation of a Person
         """
-        self.message = "Test Person's address: 123 Somewhere Drive Anytown, USA, phone number: " \
-                       "(123)456-7890, email: somewhere@someplace.com"
+        self.message = "Name: Test Person, Address: 123 Somewhere Drive Anytown, USA, Phone: " \
+                       "(123)456-7890, Email: somewhere@someplace.com\n"
         self.assertEqual(self.message, str(self.personObject), msg=None)
 
     def test_person_name_setter(self) -> None:
