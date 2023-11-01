@@ -27,6 +27,17 @@ class TestUI(unittest.TestCase):
         """
         Test the string representation of the display menu.
         """
+        # Get string representation of menu
+        menu = self.cli.display_menu()
+
+        # Test menu string against expected menu
+        expected_menu = ("Menu:\n"
+                         "1. Add Contact\n"
+                         "2. Remove Contact\n"
+                         "3. List Contacts\n"
+                         "4. Exit\n")
+        self.assertEqual(menu, expected_menu,
+                         f'Expected {expected_menu} but got {menu}')
 
     def test_invalid_menu_option(self):
         """
