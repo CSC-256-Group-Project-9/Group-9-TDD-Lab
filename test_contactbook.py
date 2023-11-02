@@ -7,20 +7,6 @@ from contactBook import ContactBook
 from unittest.mock import Mock
 from constants_messages import ContactBookMessages
 
-# Mock person 1
-mock_person = Mock()
-mock_person.name = 'Betty Carlos'
-mock_person.address = '123 Main St'
-mock_person.phone_number = '(123)456-7890'
-mock_person.email = 'betty@example.com'
-
-# Mock person 2
-mock_person2 = Mock()
-mock_person2.name = 'Joyce Greene'
-mock_person2.address = '456 South Main St'
-mock_person2.phone_number = '(987)654-3210'
-mock_person2.email = 'joyce@example.com'
-
 
 class TestContactBook(unittest.TestCase):
 
@@ -28,6 +14,27 @@ class TestContactBook(unittest.TestCase):
         """Initialization of test cases"""
         # Create contact book and assign to contacts variable
         self.contacts = ContactBook()
+
+        # Mock person 1
+        self.mock_person = Mock()
+        self.mock_person.name = 'Betty Carlos'
+        self.mock_person.address = '123 Main St'
+        self.mock_person.phone_number = '(123)456-7890'
+        self.mock_person.email = 'betty@example.com'
+
+        # Mock person 2
+        self.mock_person2 = Mock()
+        self.mock_person2.name = 'Joyce Greene'
+        self.mock_person2.address = '456 South Main St'
+        self.mock_person2.phone_number = '(987)654-3210'
+        self.mock_person2.email = 'joyce@example.com'
+
+        # Correct way to set the __str__ method for a mock object
+        self.mock_person.__str__ = Mock(
+            return_value="Name: Betty Carlos, Address: 123 Main St, Phone: (123)456-7890, Email: betty@example.com")
+        self.mock_person2.__str__ = Mock(
+            return_value="Name: Joyce Greene, Address: 456 South Main St, Phone: (987)654-3210, "
+                         "Email: joyce@example.com")
 
     def test_ContactBook_initialization(self):
         """
@@ -42,31 +49,31 @@ class TestContactBook(unittest.TestCase):
         Test the string representation of Contact list.
         """
         # Add mock contacts to contact book
-        self.contacts.add_contact(mock_person)
-        self.contacts.add_contact(mock_person2)
+        self.contacts.add_contact(self.mock_person)
+        self.contacts.add_contact(self.mock_person2)
 
         # Test the string representation is the same as expected string
-        expected_string = (f"Name: {mock_person.name}, Address: {mock_person.address},"
-                           f" Phone: {mock_person.phone_number}, Email: {mock_person.email}\n"
-                           f"Name: {mock_person2.name}, Address: {mock_person2.address},"
-                           f" Phone: {mock_person2.phone_number}, Email: {mock_person2.email}")
+        expected_string = (f"Name: {self.mock_person.name}, Address: {self.mock_person.address},"
+                           f" Phone: {self.mock_person.phone_number}, Email: {self.mock_person.email}\n"
+                           f"Name: {self.mock_person2.name}, Address: {self.mock_person2.address},"
+                           f" Phone: {self.mock_person2.phone_number}, Email: {self.mock_person2.email}")
         self.assertEqual(str(self.contacts), expected_string,
-                         'String representation does not match expected sting.')
+                         'String representation does not match expected string.')
 
     def test_add_valid_contact(self):
         """
         Test to check if a valid contact is added correctly to the ContactBook
         """
         # Add contact using add_contact function
-        self.contacts.add_contact(mock_person)
+        self.contacts.add_contact(self.mock_person)
 
         added_person = self.contacts.contact_list[0]
 
         # Test to verify the person was added to the contact list.
-        self.assertEqual(added_person.name, mock_person.name)
-        self.assertEqual(added_person.address, mock_person.address)
-        self.assertEqual(added_person.phone_number, mock_person.phone_number)
-        self.assertEqual(added_person.email, mock_person.email)
+        self.assertEqual(added_person.name, self.mock_person.name)
+        self.assertEqual(added_person.address, self.mock_person.address)
+        self.assertEqual(added_person.phone_number, self.mock_person.phone_number)
+        self.assertEqual(added_person.email, self.mock_person.email)
 
     def test_add_invalid_contact(self):
         """
@@ -81,7 +88,7 @@ class TestContactBook(unittest.TestCase):
         mock_invalid_person.email = 'my_email@example.com'
 
         # Test to verify that the add contact function raises an error
-        with self.assertRaises(Exception) as exc:
+        with self.assertRaises(ValueError) as exc:
             self.contacts.add_contact(mock_invalid_person)
 
         # Verify that the correct error message is displayed
@@ -95,8 +102,8 @@ class TestContactBook(unittest.TestCase):
         """
         # Test to verify that the add contact function raises an error
         with self.assertRaises(Exception) as exc:
-            self.contacts.add_contact(mock_person)
-            self.contacts.add_contact(mock_person)
+            self.contacts.add_contact(self.mock_person)
+            self.contacts.add_contact(self.mock_person)
 
         # Verify that the correct error message is displayed
         expected_message = ContactBookMessages.DUPLICATE_CONTACT
@@ -108,17 +115,17 @@ class TestContactBook(unittest.TestCase):
         Test to check if the correct contact is returned when finding contact
         """
         # Add mock contacts to contact book
-        self.contacts.add_contact(mock_person)
-        self.contacts.add_contact(mock_person2)
+        self.contacts.add_contact(self.mock_person)
+        self.contacts.add_contact(self.mock_person2)
 
         # Find valid contact within the list of two contacts
         contact = self.contacts.find_contact('Betty Carlos')
 
         # Verify contact is the correct contact returned
-        self.assertEqual(contact.name, mock_person.name)
-        self.assertEqual(contact.address, mock_person.address)
-        self.assertEqual(contact.phone_number, mock_person.phone_number)
-        self.assertEqual(contact.email, mock_person.email)
+        self.assertEqual(contact.name, self.mock_person.name)
+        self.assertEqual(contact.address, self.mock_person.address)
+        self.assertEqual(contact.phone_number, self.mock_person.phone_number)
+        self.assertEqual(contact.email, self.mock_person.email)
 
     def test_find_nonexistent_contact(self):
         """
@@ -126,8 +133,8 @@ class TestContactBook(unittest.TestCase):
         searching for a non-existing contact
         """
         # Add mock contacts to contact book
-        self.contacts.add_contact(mock_person)
-        self.contacts.add_contact(mock_person2)
+        self.contacts.add_contact(self.mock_person)
+        self.contacts.add_contact(self.mock_person2)
 
         # Attempt to find non-existent contact within the list of two contacts
         # Verify that an Exception is raised
@@ -145,22 +152,22 @@ class TestContactBook(unittest.TestCase):
         Test to check if the correct contact is removed from the ContactBook
         """
         # Add mock contacts to contact book
-        self.contacts.add_contact(mock_person)
-        self.contacts.add_contact(mock_person2)
+        self.contacts.add_contact(self.mock_person)
+        self.contacts.add_contact(self.mock_person2)
 
         # Verify the contact book is not empty
         self.assertEqual(len(self.contacts.contact_list), 2,
                          'Contacts not added to contact list.')
 
         # Remove contact from list
-        self.contacts.remove_contact(mock_person.name)
+        self.contacts.remove_contact(self.mock_person.name)
 
         # Verify the correct contact was removed
         # Check to see if the contact list only contains 1 person
         self.assertEqual(len(self.contacts.contact_list), 1)
         # Verify the remaining contact is correct
         contact = self.contacts.contact_list[0]
-        self.assertEqual(contact.name, mock_person2.name,
+        self.assertEqual(contact.name, self.mock_person2.name,
                          'Incorrect person removed from contact list.')
 
     def test_remove_nonexistent_contact(self):
@@ -169,7 +176,7 @@ class TestContactBook(unittest.TestCase):
         when removing a contact that does not exist.
         """
         # Add mock contacts to contact book
-        self.contacts.add_contact(mock_person)
+        self.contacts.add_contact(self.mock_person)
 
         # Verify the contact book is not empty
         self.assertEqual(len(self.contacts.contact_list), 1,
