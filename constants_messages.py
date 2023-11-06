@@ -3,7 +3,7 @@
 
 # Maximum allowable lengths for Name and phone_number
 MAX_PERSON_NAME_LENGTH: int = 40
-PHONE_NUMBER_LENGTH: int = 13
+PHONE_NUMBER_LENGTH: int = 10
 MAX_ADDRESS_LENGTH: int = 100
 MAX_EMAIL_LENGTH: int = 100
 
