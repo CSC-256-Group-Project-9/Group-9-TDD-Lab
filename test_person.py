@@ -12,7 +12,7 @@ class TestPerson(unittest.TestCase):
         # create a person object for each test
         self.personObject = Person("Test Person",
                                    "123 Somewhere Drive Anytown, USA",
-                                   "(123)456-7890",
+                                   "1234567890",
                                    "somewhere@someplace.com")
 
     def test_person_initialization(self) -> None:
@@ -57,10 +57,10 @@ class TestPerson(unittest.TestCase):
         Test the setter for changing the person's phone number
         """
         # change the person's phone_number
-        self.personObject.phone_number = "(123)456-0987"
+        self.personObject.phone_number = "1234560987"
 
         # verify the phone_number was changed correctly
-        self.assertEqual(self.personObject.phone_number, "(123)456-0987", 'phone_number not changed correctly')
+        self.assertEqual(self.personObject.phone_number, "1234560987", 'phone_number not changed correctly')
 
     def test_person_email_setter(self) -> None:
         """
@@ -80,4 +80,3 @@ class TestPerson(unittest.TestCase):
 # execute the script
 if __name__ == "__main__":
     unittest.main()
-
