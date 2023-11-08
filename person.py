@@ -53,8 +53,8 @@ def main():
     print(ant.name)
     ant.address = "123 I Live Here Lane"
     print(ant.address)
-    ant.phoneNum = "123-456-8910"
-    print(ant.phoneNum)
+    ant.phone_number = "123-456-8910"
+    print(ant.phone_number)
 
 
 
