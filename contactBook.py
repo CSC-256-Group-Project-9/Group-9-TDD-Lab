@@ -34,10 +34,7 @@ class contactBook(object):
     def add_contact(self, contact: Person):
         self.contacts.append(contact)
     
-    
-  
-
- #Main function for testing (well the test before running the Test script)   
+#Main function for testing (well the test before running the Test script)   
 def main():
     
     ant = Person
