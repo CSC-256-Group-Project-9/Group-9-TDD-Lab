@@ -80,7 +80,7 @@ class TestPersonValidator(unittest.TestCase):
         provided does not meet the required number of digits.
         """
         with self.assertRaises(ValueError) as e:
-            self.validator.validate_person_phone_number("(123)456-789")
+            self.validator.validate_person_phone_number("123456")
         self.assertEqual(str(e.exception), PersonMessages.PHONE_NUMBER_WRONG_LENGTH, "Phone-Number-Invalid-Length: Assertion Failed!")
 
 
