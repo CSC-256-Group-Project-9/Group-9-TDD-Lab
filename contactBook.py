@@ -1,19 +1,20 @@
 from person import Person
 
+
 class contactBook(object):
 
     # Deafault Constructor
     def __init__(self):
-        self.contacts = []
+        self.contacts = list()
 
-    #len dunder
+    # len dunder
     def __len__(self):
         return len(self.contacts)
-   
+
     # str dunder
     def __str__(self):
         return ", ".join(map(str, self))
-   
+
     # iter dunder
     def __iter__(self):
         """Supports iteration over contact book"""
@@ -29,26 +30,24 @@ class contactBook(object):
         for item in other:
             result.append(item)
         return result
-    
+
     # add a contact of type Person
-    def add_contact(self, contact: Person):
+    def add_contact(self, contact):
         self.contacts.append(contact)
-    
-#Main function for testing (well the test before running the Test script)   
+
+
+# Main function for testing (well the test before running the Test script)
 def main():
-    
-    ant = Person
+    ant = Person()
     ant.name = "Anthony"
     ant.address = "123 I Live Here Lane"
     ant.phone_number = "(123)456-8910"
 
-    book = contactBook
+    book = contactBook()
 
     book.add_contact(ant)
 
     print(book)
-
-
 
 
 if __name__ == "__main__":
