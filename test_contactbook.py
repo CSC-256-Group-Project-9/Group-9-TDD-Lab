@@ -19,14 +19,14 @@ class TestContactBook(unittest.TestCase):
         self.mock_person = Mock()
         self.mock_person.name = 'Betty Carlos'
         self.mock_person.address = '123 Main St'
-        self.mock_person.phone_number = '(123)456-7890'
+        self.mock_person.phone_number = '1234567890'
         self.mock_person.email = 'betty@example.com'
 
         # Mock person 2
         self.mock_person2 = Mock()
         self.mock_person2.name = 'Joyce Greene'
         self.mock_person2.address = '456 South Main St'
-        self.mock_person2.phone_number = '(987)654-3210'
+        self.mock_person2.phone_number = '9876543210'
         self.mock_person2.email = 'joyce@example.com'
 
         # Correct way to set the __str__ method for a mock object
@@ -53,10 +53,8 @@ class TestContactBook(unittest.TestCase):
         self.contacts.add_contact(self.mock_person2)
 
         # Test the string representation is the same as expected string
-        expected_string = (f"Name: {self.mock_person.name}, Address: {self.mock_person.address},"
-                           f" Phone: {self.mock_person.phone_number}, Email: {self.mock_person.email}\n"
-                           f"Name: {self.mock_person2.name}, Address: {self.mock_person2.address},"
-                           f" Phone: {self.mock_person2.phone_number}, Email: {self.mock_person2.email}")
+        expected_string = (f"{str(self.mock_person)}\n"
+                           f"{str(self.mock_person2)}")
         self.assertEqual(str(self.contacts), expected_string,
                          'String representation does not match expected string.')
 
