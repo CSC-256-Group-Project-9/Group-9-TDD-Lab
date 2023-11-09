@@ -13,6 +13,7 @@ Theses are some suggestions I came up with while working on the answer keys for 
 ## Test Changes
 
 - `test_validate_person_phone_number` in [test_validator.py](test_validator.py) - The test still expected formatted output from the validator. Expected output: `"(123)456-7890"` &rarr; `"1234567890"`.
+- `test_add_invalid_contact` in [test_contactbook.py](test_contactbook.py) - The test still used a formatted phone number as valid input for a `Person` object. Provided input: `"(123)456-7890"` &rarr; `"1234567890"`.
 
 ## 1. test_person
 
@@ -45,7 +46,6 @@ Theses are some suggestions I came up with while working on the answer keys for 
 
 - Maybe rename `contactBook.py` to `contact_book.py` as other file names follow snake case (underscores instead of spaces) instead of camel case.
 - Perhaps the person validator could be provided when creating the ContactBook object, as I had to hardcode it otherwise.
-
 
 ## 4. Constants_messages
 

@@ -82,7 +82,7 @@ class TestContactBook(unittest.TestCase):
         mock_invalid_person = Mock()
         mock_invalid_person.name = 123
         mock_invalid_person.address = "123 Main Street"
-        mock_invalid_person.phone_number = '(123)456-7890'
+        mock_invalid_person.phone_number = '1234567890'
         mock_invalid_person.email = 'my_email@example.com'
 
         # Test to verify that the add contact function raises an error
