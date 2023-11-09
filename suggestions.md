@@ -1,6 +1,6 @@
 # Suggestions
 
-**Document Version:** 1.0
+**Document Version:** 1.1
 **Date:** 11/03/2023
 **Author:** William Henderson
 
@@ -9,6 +9,10 @@ Theses are some suggestions I came up with while working on the answer keys for 
 ## Answer Key Development Notes
 
 - While writing the code for the classes in the answer keys, it was not straight forward to figure out what all was needed and expected from certain methods at a glance. Perhaps this lab would benefit from some ORM models. In some cases, I ended up just creating the class definitions with the `__init__` method, and running the test to see what failed. In others, it was easier to figure out.
+
+## Test Changes
+
+- `test_validate_person_phone_number` in [test_validator.py](test_validator.py) - The test still expected formatted output from the validator. Expected output: `"(123)456-7890"` &rarr; `"1234567890"`.
 
 ## 1. test_person
 

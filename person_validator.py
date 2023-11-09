@@ -39,11 +39,10 @@ class PersonValidator:
         if not phone_number.isdigit():
             raise ValueError(PersonMessages.INVALID_PHONE_NUMBER_TYPE)
         
-        if len(phone_number) > constants_messages.PHONE_NUMBER_LENGTH:
+        if len(phone_number) != constants_messages.PHONE_NUMBER_LENGTH:
             raise ValueError(PersonMessages.PHONE_NUMBER_WRONG_LENGTH)
         
-        # return formatted phone number: (xxx)xxx-xxxx
-        return f'({phone_number[:3]}){phone_number[3:6]}-{phone_number[6:10]}'
+        return phone_number
 
     def validate_person_email(self, email: str):
         if type(email) != str:

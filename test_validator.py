@@ -66,7 +66,7 @@ class TestPersonValidator(unittest.TestCase):
 
     def test_validate_person_phone_number(self):
         """Test if the validator can validate a correct phone number"""
-        self.assertEqual(self.validator.validate_person_phone_number("1234567890"), "(123)456-7890")
+        self.assertEqual(self.validator.validate_person_phone_number("1234567890"), "1234567890")
 
     def test_validate_phone_number_non_integer(self):
         """Test if the validator raises an error for a non-integer phone number"""
