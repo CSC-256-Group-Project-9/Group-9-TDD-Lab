@@ -81,12 +81,11 @@ class TestUI(unittest.TestCase):
 
         # Verify the contact list contains the correct information
         contact = self.contact_book.contact_list[0]
-        expected_phone = "(123)456-7890"
         self.assertEqual(contact.name, valid_person["name"],
                          "Name does not match.")
         self.assertEqual(contact.address, valid_person["address"],
                          "Address does not match.")
-        self.assertEqual(contact.phone_number, expected_phone,
+        self.assertEqual(contact.phone_number, valid_person["phone_number"],
                          "Name does not match.")
         self.assertEqual(contact.email, valid_person["email"],
                          "Name does not match.")
@@ -97,7 +96,8 @@ class TestUI(unittest.TestCase):
         when adding an invalid person to Contact Book
         """
         # Using patch, simulate user input for an invalid person name
-        with patch('builtins.input', side_effect=[123]):
+        with patch('builtins.input', side_effect=[123, valid_person["address"],
+                        valid_person["phone_number"], valid_person["email"]]):
             # Create a MagicMock to capture the output
             captured_output = MagicMock()
 
@@ -119,7 +119,8 @@ class TestUI(unittest.TestCase):
         # Using patch, simulate user input for a valid person and a duplicate
         input_values = [valid_person["name"], valid_person["address"],
                         valid_person["phone_number"], valid_person["email"],
-                        valid_person["name"]]
+                        valid_person["name"], valid_person["address"],
+                        valid_person["phone_number"], valid_person["email"]]
         with patch('builtins.input', side_effect=input_values):
             # Create a MagicMock to capture the output
             captured_output = MagicMock()

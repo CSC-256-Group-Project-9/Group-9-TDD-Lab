@@ -47,6 +47,10 @@ Theses are some suggestions I came up with while working on the answer keys for 
 - Maybe rename `contactBook.py` to `contact_book.py` as other file names follow snake case (underscores instead of spaces) instead of camel case.
 - Perhaps the person validator could be provided when creating the ContactBook object, as I had to hardcode it otherwise.
 
-## 4. Constants_messages
+## 4. test_ui
+
+- **In:** [test_ui.py](test_ui.py) - In a few tests, calling `captured_output.return_value` seems to return something along the lines of `<MagicMock name='mock()' id='1821596597760'>` instead of the contents of `sys.stdout`. This causes these tests to fail.
+
+## 5. Constants_messages
 
 - Maybe rename `constants_messages.PersonMessages.INVALID_STRING` to something more specific to the fact that it is a message about the `name` field.
