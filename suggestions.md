@@ -14,6 +14,7 @@ Theses are some suggestions I came up with while working on the answer keys for 
 
 - `test_validate_person_phone_number` in [test_validator.py](test_validator.py) - The test still expected formatted output from the validator. Expected output: `"(123)456-7890"` &rarr; `"1234567890"`.
 - `test_add_invalid_contact` in [test_contactbook.py](test_contactbook.py) - The test still used a formatted phone number as valid input for a `Person` object. Provided input: `"(123)456-7890"` &rarr; `"1234567890"`.
+- `test_add_existing_person_prompt` in [test_ui.py](test_ui.py) - The input values did not include all of the required values for the second person. input_values: `name, address, phone, email, name` &rarr; `name, address, phone, email, name, address, phone, email`
 
 ## 1. test_person
 
