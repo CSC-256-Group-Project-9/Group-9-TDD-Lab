@@ -22,7 +22,7 @@ class TestPersonValidator(unittest.TestCase):
 
     def test_validate_person_name_non_string(self):
         """Test if the validator raises an error for a non-string for name"""
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(TypeError) as e:
             self.validator.validate_person_name(12)
         self.assertEqual(str(e.exception), PersonMessages.INVALID_STRING, "Person-Non-String: Assertion Failed!")
 
@@ -46,7 +46,7 @@ class TestPersonValidator(unittest.TestCase):
 
     def test_validate_person_address_non_string(self):
         """Test if the validator raises an error for a non-string for address"""
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(TypeError) as e:
             self.validator.validate_person_address(12)
         self.assertEqual(str(e.exception), PersonMessages.INVALID_ADDRESS_TYPE, "Address-Non-String: Assertion Failed!")
 
@@ -90,7 +90,7 @@ class TestPersonValidator(unittest.TestCase):
 
     def test_validate_person_email_non_string(self):
         """Test if the validator raises an error for a non-string for email"""
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(TypeError) as e:
             self.validator.validate_person_email(12)
         self.assertEqual(str(e.exception), PersonMessages.INVALID_EMAIL, "Email-Non-String: Assertion Failed!")
 
