@@ -24,7 +24,6 @@ A resource to guide students towards successfully completing the Test driven dev
 - **Notice:** in this lab each file tests a specific functionality and the files named 'test...' where the '...' is what feature is being tested
 ## Additional Notes
  ### Works cited:
- Works Cited
 Gogna, Vandan. “A Practical Example Using Test Driven Development.” Medium, 14 July 2021, https://vandangogna.medium.com/a-practical-example-using-test-driven-development-88b4536ac574.
 Accessed 30 Oct. 2023.
 
