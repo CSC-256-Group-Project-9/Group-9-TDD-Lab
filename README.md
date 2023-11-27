@@ -2,7 +2,7 @@
 A resource to guide students towards successfully completing the Test driven development lab (TDD).
 ## Getting Started:
 - A quick review of understanding [TDD, BDD, Gherkin, and Behave with a simple to follow example](Understanding_TDD_&_BDD.docx)
-- Another great resource for understanding [TDD:](https://www.youtube.com/watch?v=ibVSPVz2LAA) and [another resource:](https://www.youtube.com/watch?v=B1j6k2j2eJg)
+- Another great resource for understanding TDD: [Python TDD Workflow](https://www.youtube.com/watch?v=ibVSPVz2LAA) and [Test Driven Development in Python](https://www.youtube.com/watch?v=B1j6k2j2eJg)
 ## Project Overview
 -  The purpose of this project is to understand and use TDD using multiple examples.
 - This repo shows a real-world example of using TDD/ testing features such as dropdown menu, and validating string input to add additional features to the mini projects that were issued in the Selenium lab.
@@ -11,7 +11,7 @@ A resource to guide students towards successfully completing the Test driven dev
 - In order to start your TDD Journey you need to have an understanding of a Python testing frameworks(a guideline to code something specifically)
 - In this project we use:
 - 1: unitTest = a preinstallled Python testing framework(installed when python is installed on personal computer)
-- Here is a quick guide to [using UnitTest:](https://www.youtube.com/watch?v=YbpKMIUjvK8)
+- Here is a quick guide to using UnitTest: [How To Write Unit Tests in Python](https://www.youtube.com/watch?v=YbpKMIUjvK8)
 - When used, we only have to write this statement **once per file** (preferably at the top, for better visability):
 -  `import unittest`  -- This tells the file that you will be using unitTest to test the file you are currently on:
 -  There are also other statements in this lab that is uses UnitTest more specifically such as:
@@ -19,7 +19,7 @@ A resource to guide students towards successfully completing the Test driven dev
 >-  This is telling the file that you want to use a section of unnittest called Mock. Mock simulates parts of code/functionality that hasn't been created or code that you wouldn't want to use in a testing environment such as a database(since we would want to store accurate data into a database and not data that's created purely for testing code), there is also another statement within this lab:
 -  `import unittest` and afterwards `from unittest.mock import patch` --
 >-  This is a function inside the mock class called Patch which allows you to replace or add data for testing
--  For [more information on Mock in UnitTest:](https://docs.python.org/3/library/unittest.mock.html)
+-  For more information on Mock in UnitTest: [unittest.mock — mock object library](https://docs.python.org/3/library/unittest.mock.html)
 ## Understanding This Repo:
 - **Notice:** in this lab each file tests a specific functionality and the files named 'test...' where the '...' is what feature is being tested
 ## Additional Notes
