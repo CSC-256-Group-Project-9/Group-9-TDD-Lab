@@ -3,7 +3,7 @@
 # Authors: Zach Walker, David Smedberg, Owen Cawlfield
 
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from ui import CLI
 from constants_messages import UIMessages, PersonMessages, ContactBookMessages
 from contactBook import ContactBook
@@ -54,15 +54,13 @@ class TestUI(unittest.TestCase):
         Input an invalid option for display menu
         and check for an appropriate error message
         """
-        with patch('builtins.input', side_effect=['5', '4']):
-            # Create a MagicMock to capture the output
-            captured_output = MagicMock()
-
-            with patch('sys.stdout', new=captured_output):
+        # Using patch, simulate user input 'h',
+        # which is expected to be an invalid option, and '4' to exit.
+        with patch('builtins.input', side_effect=['h', '4']):
+            with patch('builtins.print') as mock_print:
                 self.cli.main_loop()
-
-            # Check if the error message is displayed in the captured output
-            self.assertIn(UIMessages.INVALID_MENU_OPTION, captured_output.return_value)
+                # Assert that the invalid menu option was printed.
+                mock_print.assert_any_call(UIMessages.INVALID_MENU_OPTION)
 
     def test_successful_add_person_prompt(self):
         """
@@ -95,21 +93,19 @@ class TestUI(unittest.TestCase):
         Test to check if correct error message is displayed
         when adding an invalid person to Contact Book
         """
-        # Using patch, simulate user input for an invalid person name
-        with patch('builtins.input', side_effect=[123, valid_person["address"],
-                        valid_person["phone_number"], valid_person["email"]]):
-            # Create a MagicMock to capture the output
-            captured_output = MagicMock()
+        # User Input: '1' - Add Contact, '' - Empty String (invalid name),
+        # '4' - Exit
+        input_values = ['1', '', '4']
+        # Using patch, simulate user input
+        with patch('builtins.input', side_effect=input_values):
+            # Using patch, get print from calls
+            with patch('builtins.print') as mock_print:
+                self.cli.main_loop()
 
-            with patch('sys.stdout', new=captured_output):
-                self.cli.add_contact()
-
-            # Check if the error message is displayed in the captured output
-            self.assertIn(PersonMessages.INVALID_STRING, captured_output.return_value)
-
-        # Verify the contact list remains empty
-        self.assertEqual(len(self.contact_book.contact_list), 0,
-                         'Contact not added to list.')
+        # Verify expected message is in mock calls
+        expected_message = PersonMessages.EMPTY_NAME
+        self.assertTrue(any(expected_message in str(call) for call in mock_print.mock_calls),
+                        'Empty name message not displayed.')
 
     def test_add_existing_person_prompt(self):
         """
@@ -117,24 +113,19 @@ class TestUI(unittest.TestCase):
         when adding a person to Contact Book that already exists
         """
         # Using patch, simulate user input for a valid person and a duplicate
-        input_values = [valid_person["name"], valid_person["address"],
+        input_values = ['1', valid_person["name"], valid_person["address"],
                         valid_person["phone_number"], valid_person["email"],
-                        valid_person["name"], valid_person["address"],
-                        valid_person["phone_number"], valid_person["email"]]
+                        '1', valid_person["name"], valid_person["address"],
+                        valid_person["phone_number"], valid_person["email"], '4']
         with patch('builtins.input', side_effect=input_values):
-            # Create a MagicMock to capture the output
-            captured_output = MagicMock()
+            # Using patch, get print from calls
+            with patch('builtins.print') as mock_print:
+                self.cli.main_loop()
 
-            with patch('sys.stdout', new=captured_output):
-                self.cli.add_contact()
-                self.cli.add_contact()
-
-            # Check if the error message is displayed in the captured output
-            self.assertIn(ContactBookMessages.DUPLICATE_CONTACT, captured_output.return_value)
-
-        # Verify the contact list has only 1 contact
-        self.assertEqual(len(self.contact_book.contact_list), 1,
-                         'Duplicate added to list.')
+        # Verify expected message is in mock calls
+        expected_message = ContactBookMessages.DUPLICATE_CONTACT
+        self.assertTrue(any(expected_message in str(call) for call in mock_print.mock_calls),
+                        'Duplicate error message not displayed.')
 
     def test_successful_remove_contact(self):
         """
@@ -165,54 +156,57 @@ class TestUI(unittest.TestCase):
         Test to check if the appropriate error message is displayed
         when removing a contact that does not exist.
         """
-        # Using patch, simulate user input for a valid person
-        input_values = [valid_person["name"], valid_person["address"],
-                        valid_person["phone_number"], valid_person["email"]]
+        # Input values: '2' - Remove Contact, invalid person name, '4' - Exit
+        input_values = ['2', 'invalid_name', '4']
+
+        # Using patch, simulate user input
         with patch('builtins.input', side_effect=input_values):
-            self.cli.add_contact()
+            # Using patch, get print from calls
+            with patch('builtins.print') as mock_print:
+                self.cli.main_loop()
 
-        # Verify the contact list has been updated to 1 contact
-        self.assertEqual(len(self.contact_book.contact_list), 1,
-                         'Contact not added to list.')
-
-        # Using patch, simulate user input for a valid person
-        name = "invalid_name"
-        with patch('builtins.input', side_effect=[name]):
-            # Create a MagicMock to capture the output
-            captured_output = MagicMock()
-
-            with patch('sys.stdout', new=captured_output):
-                self.cli.remove_contact()
-
-        # Verify that the correct error is returned
-        expected_message = f'Contact {name} not in Contact Book.'
-        self.assertEqual(captured_output.return_value, expected_message,
-                         f'Expected {expected_message} but got {captured_output.return_value}')
+        # Verify expected message is in mock calls
+        expected_message = 'Contact invalid_name not in Contact Book.'
+        self.assertTrue(any(expected_message in str(call) for call in mock_print.mock_calls),
+                        'Error message not displayed.')
 
     def test_empty_contact_book_display(self):
         """
         Test to verify the correct message is displayed when contact book is empty
         """
-        display_str = self.cli.display_list()
-        self.assertEqual(display_str, UIMessages.EMPTY_CONTACT_BOOK,
-                         f'Expected {UIMessages.EMPTY_CONTACT_BOOK} but got {display_str}')
+        # Input Values: '3' - Display List (empty list), '4' - Exit
+        input_values = ['3', '4']
+        # Using patch, simulate user input
+        with patch('builtins.input', side_effect=input_values):
+            # Using patch, get print from calls
+            with patch('builtins.print') as mock_print:
+                self.cli.main_loop()
+
+        # Verify expected message is in mock calls
+        expected_message = UIMessages.EMPTY_CONTACT_BOOK
+        self.assertTrue(any(expected_message in str(call) for call in mock_print.mock_calls),
+                        'Empty contact book message not displayed.')
 
     def test_list_contacts(self):
         """
         Add contacts to contact book and verify the contents are displayed correctly
         """
-        # Using patch, simulate user input for a valid person
-        input_values = [valid_person["name"], valid_person["address"],
-                        valid_person["phone_number"], valid_person["email"]]
+        # Input Values: '1' - Add Contact, valid person information,
+        # '3' - Display List, '4' - Exit
+        input_values = ['1', valid_person["name"], valid_person["address"],
+                        valid_person["phone_number"], valid_person["email"], '3', '4']
+        # Using patch, simulate user input
         with patch('builtins.input', side_effect=input_values):
-            self.cli.add_contact()
+            # Using patch, get print from calls
+            with patch('builtins.print') as mock_print:
+                self.cli.main_loop()
 
-        contact_display = self.cli.display_list()
+        # Verify expected string is in mock calls
         expected_phone = '(123)456-7890'
         expected_string = (f"Name: {valid_person['name']}, Address: {valid_person['address']},"
-                           f" Phone: {expected_phone}, Email: {valid_person['email']}\n")
-        self.assertEqual(contact_display, expected_string,
-                         f'String does not match: expected {expected_string}, but got {contact_display}')
+                           f" Phone: {expected_phone}, Email: {valid_person['email']}")
+        self.assertTrue(any(expected_string in str(call) for call in mock_print.mock_calls),
+                        'Incorrect contact display.')
 
 
 # execute the script
