@@ -45,5 +45,19 @@ class Person:
             f'Email: {self.email}'
         )
     
+    def __eq__(self, other):
+        if type(other) != Person:
+            return False
+        
+        if (
+            self.name == other.name and
+            self.address == other.address and
+            self.phone_number == other.phone_number and
+            self.email == other.email
+        ):
+            return True
+        
+        return False
+    
     def dispose(self):
         pass

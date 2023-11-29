@@ -42,10 +42,14 @@ class CLI:
         return True
 
     def add_contact(self):
-        name = input('full name: ')
-        address = input('street address: ')
-        phone_number = input('phone number: ')
-        email = input('email address: ')
+        try:
+            name = self.contact_book.validator.validate_person_name(input('full name: '))
+            address = self.contact_book.validator.validate_person_address(input('street address: '))
+            phone_number = self.contact_book.validator.validate_person_phone_number(input('phone number: '))
+            email = self.contact_book.validator.validate_person_address(input('email address: '))
+        except Exception as err:
+            print(err)
+            return
 
         person = Person(name=name,
                         address=address,
