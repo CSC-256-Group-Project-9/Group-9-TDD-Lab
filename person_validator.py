@@ -7,7 +7,7 @@ class PersonValidator:
 
     def validate_person_name(self, name: str):
         if type(name) != str:
-            raise ValueError(PersonMessages.INVALID_STRING)
+            raise TypeError(PersonMessages.INVALID_STRING)
         
         if not name:
             raise ValueError(PersonMessages.EMPTY_NAME)
@@ -19,7 +19,7 @@ class PersonValidator:
 
     def validate_person_address(self, address: str):
         if type(address) != str:
-            raise ValueError(PersonMessages.INVALID_ADDRESS_TYPE)
+            raise TypeError(PersonMessages.INVALID_ADDRESS_TYPE)
 
         if not address:
             raise ValueError(PersonMessages.EMPTY_ADDRESS)
@@ -46,7 +46,7 @@ class PersonValidator:
 
     def validate_person_email(self, email: str):
         if type(email) != str:
-            raise ValueError(PersonMessages.INVALID_EMAIL)
+            raise TypeError(PersonMessages.INVALID_EMAIL)
         
         if not email:
             raise ValueError(PersonMessages.EMPTY_EMAIL)
