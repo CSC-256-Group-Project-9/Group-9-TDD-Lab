@@ -8,37 +8,25 @@ class ContactBook:
         self.validator = PersonValidator()
 
     def add_contact(self, person: Person):
-        # validate contact
-        try:
-            self.validator.validate_person_name(person.name)
-            self.validator.validate_person_address(person.address)
-            self.validator.validate_person_phone_number(person.phone_number)
-            self.validator.validate_person_email(person.email)
-        except:
-            raise ValueError(ContactBookMessages.INVALID_ADD)
-        
-        # check for duplication
-        if person in self.contact_list:
-            raise Exception(ContactBookMessages.DUPLICATE_CONTACT)
+        # validate contact and raise an error if needed
+        pass
 
-        self.contact_list.append(person)
+        # check for duplication and then add to the contact
+        pass
 
     def find_contact(self, name: str) -> Person:
-        index = self._get_contact_index(name)
-        
-        return self.contact_list[index]
+        # return the contact identified
+        pass
 
     def remove_contact(self, name: str):
+        # remove the contact from the contact_list
         index = self._get_contact_index(name)
-        
+
         self.contact_list.pop(index)
 
     def _get_contact_index(self, name: str) -> int:
-        names = list(map(lambda x: x.name, self.contact_list))
-        if name not in names:
-            raise Exception(f'Contact {name} not in Contact Book.')
-            
-        return names.index(name)
+        # determine if the contact is in the contact book and return it
+        pass
 
     def __str__(self) -> str:
         return '\n'.join((str(person) for person in self.contact_list))

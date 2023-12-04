@@ -6,43 +6,16 @@ class PersonValidator:
         pass
 
     def validate_person_name(self, name: str):
-        if type(name) != str:
-            raise TypeError(PersonMessages.INVALID_STRING)
-        
-        if not name:
-            raise ValueError(PersonMessages.EMPTY_NAME)
-        
-        if len(name) > constants_messages.MAX_PERSON_NAME_LENGTH:
-            raise ValueError(PersonMessages.NAME_TOO_LONG)
-        
-        return name
+        # validate the persons name and raise the appropriate error with the correct error message if needed
+        pass
 
     def validate_person_address(self, address: str):
-        if type(address) != str:
-            raise TypeError(PersonMessages.INVALID_ADDRESS_TYPE)
-
-        if not address:
-            raise ValueError(PersonMessages.EMPTY_ADDRESS)
-        
-        if len(address) > constants_messages.MAX_ADDRESS_LENGTH:
-            raise ValueError(PersonMessages.ADDRESS_TOO_LONG)
-        
-        return address
+        # validate the persons address and raise the appropriate error with the correct error message if needed
+        pass
 
     def validate_person_phone_number(self, phone_number: str):
-        if type(phone_number) != str:
-            raise ValueError(PersonMessages.INVALID_PHONE_NUMBER_TYPE)
-        
-        if not phone_number:
-            raise ValueError(PersonMessages.EMPTY_PHONE_NUMBER)
-        
-        if not phone_number.isdigit():
-            raise ValueError(PersonMessages.INVALID_PHONE_NUMBER_TYPE)
-        
-        if len(phone_number) != constants_messages.PHONE_NUMBER_LENGTH:
-            raise ValueError(PersonMessages.PHONE_NUMBER_WRONG_LENGTH)
-        
-        return phone_number
+        # validate the persons phone number and raise the appropriate error with the correct error message if needed
+        pass
 
     def validate_person_email(self, email: str):
         if type(email) != str:

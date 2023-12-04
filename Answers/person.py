@@ -1,37 +1,33 @@
 class Person:
     def __init__(self, name: str, address: str, phone_number: str, email: str):
-        # initialize the class attributes
-        pass
+        self._name = name
+        self._address = address
+        self._phone_number = phone_number
+        self._email = email
     
     @property
     def name(self) -> str:
-        # get the given attribute
-        pass
+        return self._name
     
     @name.setter
     def name(self, name: str):
-        # set the given attribute
-        pass
+        self._name = name
     
     @property
     def address(self) -> str:
-        # get the given attribute
-        pass
+        return self._address
     
     @address.setter
     def address(self, address: str):
-        # set the given attribute
-        pass
+        self._address = address
     
     @property
     def phone_number(self) -> str:
-        # get the given attribute
-        pass
+        return self._phone_number
     
     @phone_number.setter
     def phone_number(self, phone_number: str):
-        # set the given attribute
-        pass
+        self._phone_number = phone_number
     
     @property
     def email(self) -> str:
@@ -42,14 +38,17 @@ class Person:
         self._email = email
     
     def __str__(self):
-        # return the formatted person class attributes
-        pass
+        return (
+            f'Name: {self.name}, '
+            f'Address: {self.address}, '
+            f'Phone: ({self.phone_number[:3]}){self.phone_number[3:6]}-{self.phone_number[6:10]}, '  # (xxx)xxx-xxxx
+            f'Email: {self.email}'
+        )
     
     def __eq__(self, other):
-        # determine if the other type is not identical to the Person class, and if so, return true
         if type(other) != Person:
             return False
-
+        
         if (
             self.name == other.name and
             self.address == other.address and
@@ -57,7 +56,7 @@ class Person:
             self.email == other.email
         ):
             return True
-
+        
         return False
     
     def dispose(self):
